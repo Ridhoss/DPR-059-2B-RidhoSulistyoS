@@ -15,6 +15,9 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::controller(AdminController::class)->group(function () {
         Route::get('/admin/home', 'index_home');
+        Route::get('/admin/anggota', 'index_anggota');
+        Route::get('/admin/anggota/tambah', 'index_tambah_anggota');
+        Route::post('/admin/anggota/tambah', 'action_tambah_anggota');
     });
 });
 

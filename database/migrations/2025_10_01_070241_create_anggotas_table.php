@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id('id_anggota');
             $table->string('nama_depan');
             $table->string('nama_belakang');
-            $table->string('gelar_depan');
-            $table->string('gelar_belakang');
+            $table->string('gelar_depan')->nullable();
+            $table->string('gelar_belakang')->nullable();
             $table->enum('jabatan', ['Ketua', 'Wakil Ketua', 'Anggota']);
             $table->enum('status_pernikahan', ['Menikah', 'Belum Menikah']);
-            $table->rememberToken();
             $table->timestamps();
         });
     }

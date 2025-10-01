@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layout.citizen')
 
 @section('content')
     <h1>Welcome CITIZEN</h1>

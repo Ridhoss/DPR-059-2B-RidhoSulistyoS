@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Gaji DPR | Admin</title>
+    <title>Gaji DPR | Citizen</title>
 
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -54,8 +54,8 @@
 
         <div class="menu w-100 d-flex align-items-center justify-content-center">
             <a id="btn-nav" href="/admin/home" class="btn btn-outline-dark">Home</a>
-            <a id="btn-nav" href="/admin/anggota" class="btn btn-outline-dark">Anggota</a>
-            {{-- <a id="btn-nav" href="/admin/course" class="btn btn-outline-dark">Courses</a> --}}
+            {{-- <a id="btn-nav" href="/admin/mahasiswa" class="btn btn-outline-dark">Students</a>
+            <a id="btn-nav" href="/admin/course" class="btn btn-outline-dark">Courses</a> --}}
             <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalLogout">Sign
                 Out</button>
         </div>
