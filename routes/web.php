@@ -18,6 +18,10 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
         Route::get('/admin/anggota', 'index_anggota');
         Route::get('/admin/anggota/tambah', 'index_tambah_anggota');
         Route::post('/admin/anggota/tambah', 'action_tambah_anggota');
+
+        Route::get('/admin/komponen', 'index_komponen');
+        Route::get('/admin/komponen/tambah', 'index_tambah_komponen');
+        Route::post('/admin/komponen/tambah', 'action_tambah_komponen');
     });
 });
 

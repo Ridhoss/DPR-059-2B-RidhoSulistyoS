@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_komponen');
             $table->string('kategori');
             $table->enum('jabatan', ['Ketua', 'Wakil Ketua', 'Anggota']);
-            $table->integer('nominal');
+            $table->decimal('nominal', 17,2);
             $table->string('satuan');
             $table->timestamps();
         });

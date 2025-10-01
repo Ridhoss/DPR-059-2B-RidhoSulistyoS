@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\anggota;
+use App\Models\komponen_gaji;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -102,6 +103,39 @@ class DatabaseSeeder extends Seeder
                 'gelar_belakang' => NULL,
                 'jabatan' => 'Anggota',
                 'status_pernikahan' => 'Belum Menikah',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+        komponen_gaji::insert([
+            [
+                'id_komponen_gaji' => 201,
+                'nama_komponen' => 'Gaji Pokok Ketua',
+                'kategori' => 'Gaji Pokok',
+                'jabatan' => 'Ketua',
+                'nominal' => 5040000.00,
+                'satuan' => 'Bulan',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id_komponen_gaji' => 202,
+                'nama_komponen' => 'Gaji Pokok Wakil Ketua',
+                'kategori' => 'Gaji Pokok',
+                'jabatan' => 'Wakil Ketua',
+                'nominal' => 4620000.00,
+                'satuan' => 'Bulan',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id_komponen_gaji' => 203,
+                'nama_komponen' => 'Gaji Pokok Anggota',
+                'kategori' => 'Gaji Pokok',
+                'jabatan' => 'Anggota',
+                'nominal' => 4200000.00,
+                'satuan' => 'Bulan',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

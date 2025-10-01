@@ -55,7 +55,7 @@
         <div class="menu w-100 d-flex align-items-center justify-content-center">
             <a id="btn-nav" href="/admin/home" class="btn btn-outline-dark">Home</a>
             <a id="btn-nav" href="/admin/anggota" class="btn btn-outline-dark">Anggota</a>
-            {{-- <a id="btn-nav" href="/admin/course" class="btn btn-outline-dark">Courses</a> --}}
+            <a id="btn-nav" href="/admin/komponen" class="btn btn-outline-dark">Komponen Gaji</a>
             <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalLogout">Sign
                 Out</button>
         </div>
