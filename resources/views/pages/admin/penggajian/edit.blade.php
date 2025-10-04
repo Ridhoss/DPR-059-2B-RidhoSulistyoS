@@ -1,7 +1,7 @@
 @extends('layout.admin')
 
 @section('content')
-    <h1 class="font-bold text-3xl uppercase mt-10 text-center">Tambah Penggajian</h1>
+    <h1 class="font-bold text-3xl uppercase mt-10 text-center">Edit Penggajian</h1>
     <div class="flex mt-10 w-full">
         <form action="/admin/penggajian/edit" method="POST" class="flex mt-10 w-full">
             @csrf

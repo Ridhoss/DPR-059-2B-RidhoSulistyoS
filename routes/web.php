@@ -38,6 +38,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
         Route::get('/admin/penggajian/edit/{slug}', 'index_ubah_gaji');
         Route::post('/admin/penggajian/edit', 'action_ubah_gaji');
         Route::post('/admin/penggajian/delete', 'action_delete_penggajian');
+        Route::get('/admin/penggajian/detail/{slug}', 'index_detail_penggajian');
     });
 });
 

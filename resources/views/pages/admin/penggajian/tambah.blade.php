@@ -165,14 +165,13 @@
 
                             if (checkedGaji.kategori === 'Gaji Pokok') {
                                 totalGajiPokok += checkedGaji.nominal;
-                                totalGaji += checkedGaji.nominal;
                             } else if (checkedGaji.kategori === 'Tunjangan Melekat') {
                                 totalTunjanganMelekat += checkedGaji.nominal;
-                                totalGaji += checkedGaji.nominal;
                             } else if (checkedGaji.kategori === 'Tunjangan Lain') {
                                 totalTunjanganLain += checkedGaji.nominal;
-                                totalGaji += checkedGaji.nominal;
                             }
+
+                            totalGaji += checkedGaji.nominal;
                         }
 
                         ubahTextNominal();

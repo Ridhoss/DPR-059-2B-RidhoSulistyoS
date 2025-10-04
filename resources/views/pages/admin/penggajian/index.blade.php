@@ -22,7 +22,7 @@
                     <td>{{ $g['anggota']->jabatan }}</td>
                     <td>Rp. {{ number_format($g['total_gaji'], 2, ',', '.') }}</td>
                     <td class="h-full flex gap-2 justify-center items-center">
-                        <a href="/admin/komponen/edit/{{ $g['anggota']->id_anggota }}"
+                        <a href="/admin/penggajian/detail/{{ $g['anggota']->id_anggota }}"
                             class="flex p-2 border-2 border-cyan-500 bg-cyan-500 text-white hover:bg-cyan-300 hover:border-cyan-300 rounded-md justify-center items-center">Detail</a>
                         <a href="/admin/penggajian/edit/{{ $g['anggota']->id_anggota }}"
                             class="flex p-2 border-2 border-green-500 bg-green-500 text-white hover:bg-green-300 hover:border-green-300 rounded-md justify-center items-center">Edit</a>

@@ -363,4 +363,22 @@ class AdminController extends Controller
 
         return response()->json(['success' => false]);
     }
+
+    public function index_detail_penggajian($ids)
+    {
+        $anggota = Anggota::where('id_anggota', $ids)->first();
+        $id = $anggota->id_anggota;
+        $komponenReady = komponen_gaji::whereIn('id_komponen_gaji', function ($query) use ($id) {
+            $query->select('id_komponen_gaji')
+                ->from('penggajians')
+                ->where('id_anggota', $id);
+        })->get();
+
+        $data = [
+            'anggota' => $anggota,
+            'komponen' => $komponenReady,
+        ];
+
+        return view('pages.admin.penggajian.detail', $data);
+    }
 }
