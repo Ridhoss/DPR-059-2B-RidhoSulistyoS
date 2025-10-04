@@ -137,28 +137,33 @@ class AdminController extends Controller
 
     public function action_tambah_komponen(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'nama_depan' => 'required',
-        //     'nama_belakang' => 'required',
-        //     'jabatan' => 'required',
-        //     'status_pernikahan' => 'required',
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'nama_komponen' => 'required',
+            'kategori' => 'required',
+            'jabatan' => 'required',
+            'nominal' => 'required',
+            'satuan' => 'required',
+        ]);
 
-        // if ($validator->fails()) {
-        //     return redirect('/admin/anggota/tambah')
-        //         ->withErrors($validator)
-        //         ->withInput();
-        // }
+        if ($validator->fails()) {
+            return redirect('/admin/komponen/tambah')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
-        // $anggota = anggota::create([
-        //     'nama_depan' => $request->nama_depan,
-        //     'nama_belakang' => $request->nama_belakang,
-        //     'gelar_depan' => $request->gelar_depan,
-        //     'gelar_belakang' => $request->gelar_belakang,
-        //     'jabatan' => $request->jabatan,
-        //     'status_pernikahan' => $request->status_pernikahan,
-        // ]);
+        komponen_gaji::create([
+            'nama_komponen' => $request->nama_komponen,
+            'kategori' => $request->kategori,
+            'jabatan' => $request->jabatan,
+            'nominal' => $request->nominal,
+            'satuan' => $request->satuan,
+        ]);
 
-        // return redirect('/admin/anggota');
+        return redirect('/admin/komponen');
+    }
+
+    public function index_edit_komponen($id)
+    {
+        return view('pages.admin.komponen_gaji.edit');
     }
 }

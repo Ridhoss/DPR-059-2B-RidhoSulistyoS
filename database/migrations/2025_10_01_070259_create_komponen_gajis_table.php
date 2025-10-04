@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('komponen_gajis', function (Blueprint $table) {
             $table->id('id_komponen_gaji');
             $table->string('nama_komponen');
-            $table->string('kategori');
-            $table->enum('jabatan', ['Ketua', 'Wakil Ketua', 'Anggota']);
+            $table->enum('kategori', ['Gaji Pokok', 'Tunjangan Melekat', 'Tunjangan Lain']);
+            $table->enum('jabatan', ['Ketua', 'Wakil Ketua', 'Anggota', 'Semua']);
             $table->decimal('nominal', 17,2);
             $table->string('satuan');
             $table->timestamps();

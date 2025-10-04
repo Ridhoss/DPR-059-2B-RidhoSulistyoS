@@ -1,11 +1,12 @@
 @extends('layout.admin')
 
 @section('content')
-    <h1 class="font-bold text-3xl uppercase mt-10 text-center">Tambah Komponen Gaji</h1>
+    <h1 class="font-bold text-3xl uppercase mt-10 text-center">Edit Komponen Gaji</h1>
     <div class="flex justify-center items-center mt-10">
         <div class="p-5 border-2 border-gray-300 bg-white shadow-xl rounded-lg">
             <form action="/admin/komponen/tambah" method="POST" class="w-150">
                 @csrf
+                <input type="hidden" name="id_komponen_gaji">
                 <div class="flex flex-col mt-3">
                     <label for="nama_komponen">Nama Komponen</label>
                     <input type="text" class="border border-gray-500 h-10 rounded-lg ps-2 mt-2" id="nama_komponen"

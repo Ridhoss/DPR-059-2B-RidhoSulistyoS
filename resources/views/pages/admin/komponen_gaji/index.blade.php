@@ -22,10 +22,10 @@
                     <td>{{ $k->nama_komponen }}</td>
                     <td>{{ $k->kategori }}</td>
                     <td>{{ $k->jabatan }}</td>
-                    <td>{{ $k->nominal }}</td>
+                    <td>Rp. {{ number_format($k->nominal, 2, ',', '.') }}</td>
                     <td>{{ $k->satuan }}</td>
                     <td class="h-full flex gap-2 justify-center items-center">
-                        <a href="/admin/anggota/edit/{{ $k->id_komponen_gaji }}"
+                        <a href="/admin/komponen/edit/{{ $k->id_komponen_gaji }}"
                             class="flex p-2 border-2 border-green-500 bg-green-500 text-white hover:bg-green-300 hover:border-green-300 rounded-md justify-center items-center">Edit</a>
                         <a class="flex p-2 border-2 border-red-500 bg-red-500 text-white hover:bg-red-300 hover:border-red-300 rounded-md justify-center items-center hover:cursor-pointer btn-hapus"
                             data-id="{{ $k->id_komponen_gaji }}">Delete</a>
