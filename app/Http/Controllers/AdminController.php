@@ -74,6 +74,7 @@ class AdminController extends Controller
     public function action_edit_anggota(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'id_anggota' => 'required',
             'nama_depan' => 'required',
             'nama_belakang' => 'required',
             'jabatan' => 'required',
@@ -164,6 +165,41 @@ class AdminController extends Controller
 
     public function index_edit_komponen($id)
     {
-        return view('pages.admin.komponen_gaji.edit');
+        $komponen = komponen_gaji::where('id_komponen_gaji', $id)->first();
+        $data = [
+            'komponen' => $komponen,
+        ];
+
+        return view('pages.admin.komponen_gaji.edit', $data);
+    }
+
+    public function action_edit_komponen(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id_komponen_gaji' => 'required',
+            'nama_komponen' => 'required',
+            'kategori' => 'required',
+            'jabatan' => 'required',
+            'nominal' => 'required',
+            'satuan' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/admin/komponen/edit/' . $request->id_komponen_gaji)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $komponen = komponen_gaji::where('id_komponen_gaji', $request->id_komponen_gaji)->first();
+
+        $komponen->update([
+            'nama_komponen' => $request->nama_komponen,
+            'kategori' => $request->kategori,
+            'jabatan' => $request->jabatan,
+            'nominal' => $request->nominal,
+            'satuan' => $request->satuan,
+        ]);
+
+        return redirect('/admin/komponen');
     }
 }

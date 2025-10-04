@@ -26,6 +26,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
         Route::get('/admin/komponen/tambah', 'index_tambah_komponen');
         Route::post('/admin/komponen/tambah', 'action_tambah_komponen');
         Route::get('/admin/komponen/edit/{slug}', 'index_edit_komponen');
+        Route::post('/admin/komponen/edit', 'action_edit_komponen');
     });
 });
 
