@@ -41,7 +41,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="5" class="text-center text-danger">
+                <td colspan="6" class="text-center text-danger">
                     Data tidak ditemukan / Kosong!
                 </td>
             </tr>

@@ -50,6 +50,11 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
 Route::middleware(['auth', 'role:Public'])->group(function () {
     Route::controller(CitizenController::class)->group(function () {
         Route::get('/citizen/home', 'index_home');
+        Route::get('/citizen/anggota', 'index_anggota');
+        Route::get('/citizen/anggota/cari', 'action_cari_anggota');
+        Route::get('/citizen/penggajian', 'index_penggajian');
+        Route::get('/citizen/penggajian/cari', 'action_cari_penggajian');
+        Route::get('/citizen/penggajian/detail/{slug}', 'index_detail_penggajian');
     });
 });
 
