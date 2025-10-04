@@ -21,6 +21,8 @@
                 <a id="btn-nav" class="text-white hover:font-bold transition-all duration-300"
                     href="/admin/home">Home</a>
                 <a id="btn-nav" class="text-white hover:font-bold transition-all duration-300"
+                    href="/admin/anggota">Gaji Anggota</a>
+                <a id="btn-nav" class="text-white hover:font-bold transition-all duration-300"
                     href="/admin/anggota">Anggota</a>
                 <a id="btn-nav" class="text-white hover:font-bold transition-all duration-300"
                     href="/admin/komponen">Komponen Gaji</a>

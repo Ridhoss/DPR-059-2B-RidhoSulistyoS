@@ -139,7 +139,7 @@ class AdminController extends Controller
     public function action_tambah_komponen(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_komponen' => 'required',
+            'nama_komponen' => 'required|unique:komponen_gajis,nama_komponen',
             'kategori' => 'required',
             'jabatan' => 'required',
             'nominal' => 'required',
@@ -201,5 +201,19 @@ class AdminController extends Controller
         ]);
 
         return redirect('/admin/komponen');
+    }
+
+    public function action_delete_komponen(Request $request)
+    {
+        $id = $request->input('id');
+
+        $komponen = komponen_gaji::where('id_komponen_gaji', $id)->first();
+
+        if ($komponen) {
+            $komponen->delete();
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
     }
 }

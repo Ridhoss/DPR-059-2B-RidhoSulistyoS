@@ -55,7 +55,7 @@
                     showCancelButton: true,
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        fetch("/admin/anggota/delete", {
+                        fetch("/admin/komponen/delete", {
                                 method: "POST",
                                 headers: {
                                     "X-CSRF-TOKEN": document.querySelector(
