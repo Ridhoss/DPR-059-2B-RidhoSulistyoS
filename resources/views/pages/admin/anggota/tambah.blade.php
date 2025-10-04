@@ -49,12 +49,16 @@
                             $statuses = ['Menikah', 'Belum Menikah'];
                         @endphp
                         @foreach ($statuses as $s)
-                            <option value="{{ $s }}"
-                                {{ old('status_pernikahan') == $s ? 'selected' : '' }}>
+                            <option value="{{ $s }}" {{ old('status_pernikahan') == $s ? 'selected' : '' }}>
                                 {{ $s }}
                             </option>
                         @endforeach
                     </select>
+                </div>
+                <div class="flex flex-col mt-3">
+                    <label for="jumlah_anak">Jumlah Anak</label>
+                    <input type="number" class="border border-gray-500 h-10 rounded-lg ps-2 mt-2" id="jumlah_anak"
+                        name="jumlah_anak" value="{{ old('jumlah_anak') }}" placeholder="Jumlah Anak" min="0" required>
                 </div>
                 <div class="flex flex-col mt-3">
                     <button type="submit"

@@ -15,6 +15,7 @@ class anggota extends Model
         'gelar_belakang',
         'jabatan',
         'status_pernikahan',
+        'jumlah_anak'
     ];
 
     public $timestamps = true;

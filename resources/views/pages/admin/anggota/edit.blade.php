@@ -63,6 +63,12 @@
                     </select>
                 </div>
                 <div class="flex flex-col mt-3">
+                    <label for="jumlah_anak">Jumlah Anak</label>
+                    <input type="number" class="border border-gray-500 h-10 rounded-lg ps-2 mt-2" id="jumlah_anak"
+                        name="jumlah_anak" value="{{ old('jumlah_anak', $anggota->jumlah_anak) }}" placeholder="Jumlah Anak" min="0"
+                        required>
+                </div>
+                <div class="flex flex-col mt-3">
                     <button type="submit"
                         class="w-full h-10 mt-8 rounded-lg bg-purple-600 hover:bg-purple-400 text-white">Submit</button>
                 </div>

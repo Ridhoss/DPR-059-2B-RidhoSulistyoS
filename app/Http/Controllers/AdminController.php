@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\anggota;
 use App\Models\komponen_gaji;
+use App\Models\penggajian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -40,6 +41,7 @@ class AdminController extends Controller
             'nama_belakang' => 'required',
             'jabatan' => 'required',
             'status_pernikahan' => 'required',
+            'jumlah_anak' => 'required|min:0',
         ]);
 
         if ($validator->fails()) {
@@ -55,6 +57,7 @@ class AdminController extends Controller
             'gelar_belakang' => $request->gelar_belakang,
             'jabatan' => $request->jabatan,
             'status_pernikahan' => $request->status_pernikahan,
+            'jumlah_anak' => $request->jumlah_anak,
         ]);
 
         return redirect('/admin/anggota');
@@ -79,6 +82,7 @@ class AdminController extends Controller
             'nama_belakang' => 'required',
             'jabatan' => 'required',
             'status_pernikahan' => 'required',
+            'jumlah_anak' => 'required|min:0',
         ]);
 
         if ($validator->fails()) {
@@ -96,6 +100,7 @@ class AdminController extends Controller
             'gelar_belakang' => $request->gelar_belakang,
             'jabatan' => $request->jabatan,
             'status_pernikahan' => $request->status_pernikahan,
+            'jumlah_anak' => $request->jumlah_anak
         ]);
 
         return redirect('/admin/anggota');
@@ -215,5 +220,37 @@ class AdminController extends Controller
         }
 
         return response()->json(['success' => false]);
+    }
+
+
+
+
+    // penggajian
+    public function index_gaji()
+    {
+        $komponen = penggajian::with(['anggota', 'komponen_gaji'])->get();
+        $komponenGrouped = $komponen->groupBy('id_anggota');
+
+        $penggajian = $komponenGrouped
+            ->map(function ($items) {
+                $first = $items->first();
+                return [
+                    'anggota' => $first->anggota,
+                    'total_gaji' => $items->sum(function ($item) {
+                        return $item->komponen_gaji->nominal;
+                    })
+                ];
+            });
+
+        $data = [
+            'gaji' => $penggajian,
+        ];
+
+        return view('pages.admin.penggajian.index', $data);
+    }
+
+    public function index_tambah_gaji()
+    {
+        return view('pages.admin.komponen_gaji.tambah');
     }
 }

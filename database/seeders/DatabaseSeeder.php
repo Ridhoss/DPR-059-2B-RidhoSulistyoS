@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\anggota;
 use App\Models\komponen_gaji;
+use App\Models\penggajian;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -48,6 +49,7 @@ class DatabaseSeeder extends Seeder
                 'gelar_belakang' => 'S.Sos',
                 'jabatan' => 'Ketua',
                 'status_pernikahan' => 'Menikah',
+                'jumlah_anak' => 3,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -59,6 +61,7 @@ class DatabaseSeeder extends Seeder
                 'gelar_belakang' => NULL,
                 'jabatan' => 'Wakil Ketua',
                 'status_pernikahan' => 'Menikah',
+                'jumlah_anak' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -70,6 +73,7 @@ class DatabaseSeeder extends Seeder
                 'gelar_belakang' => 'S.S., M.Sc.',
                 'jabatan' => 'Anggota',
                 'status_pernikahan' => 'Menikah',
+                'jumlah_anak' => 5,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -81,6 +85,7 @@ class DatabaseSeeder extends Seeder
                 'gelar_belakang' => 'S.H., M.H.',
                 'jabatan' => 'Wakil Ketua',
                 'status_pernikahan' => 'Menikah',
+                'jumlah_anak' => 11,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -92,6 +97,7 @@ class DatabaseSeeder extends Seeder
                 'gelar_belakang' => NULL,
                 'jabatan' => 'Anggota',
                 'status_pernikahan' => 'Menikah',
+                'jumlah_anak' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -103,6 +109,7 @@ class DatabaseSeeder extends Seeder
                 'gelar_belakang' => NULL,
                 'jabatan' => 'Anggota',
                 'status_pernikahan' => 'Belum Menikah',
+                'jumlah_anak' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -346,13 +353,91 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
+
+        penggajian::insert([
+            // Anggota 101 - Ketua DPR (misal)
+            ['id_anggota' => 101, 'id_komponen_gaji' => 201, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 101, 'id_komponen_gaji' => 204, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 101, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 101, 'id_komponen_gaji' => 206, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 101, 'id_komponen_gaji' => 207, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 101, 'id_komponen_gaji' => 210, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 101, 'id_komponen_gaji' => 213, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 101, 'id_komponen_gaji' => 216, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 101, 'id_komponen_gaji' => 219, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 101, 'id_komponen_gaji' => 222, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 101, 'id_komponen_gaji' => 224, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 101, 'id_komponen_gaji' => 225, 'created_at' => now(), 'updated_at' => now()],
+
+            // Anggota 102 - Wakil Ketua DPR (Lodewijk)
+            ['id_anggota' => 102, 'id_komponen_gaji' => 202, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 102, 'id_komponen_gaji' => 204, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 102, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 102, 'id_komponen_gaji' => 206, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 102, 'id_komponen_gaji' => 208, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 102, 'id_komponen_gaji' => 210, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 102, 'id_komponen_gaji' => 214, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 102, 'id_komponen_gaji' => 217, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 102, 'id_komponen_gaji' => 220, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 102, 'id_komponen_gaji' => 222, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 102, 'id_komponen_gaji' => 224, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 102, 'id_komponen_gaji' => 225, 'created_at' => now(), 'updated_at' => now()],
+
+            // Anggota 103 - Anggota DPR (Fadli)
+            ['id_anggota' => 103, 'id_komponen_gaji' => 203, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 103, 'id_komponen_gaji' => 204, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 103, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 103, 'id_komponen_gaji' => 206, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 103, 'id_komponen_gaji' => 209, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 103, 'id_komponen_gaji' => 210, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 103, 'id_komponen_gaji' => 215, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 103, 'id_komponen_gaji' => 218, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 103, 'id_komponen_gaji' => 221, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 103, 'id_komponen_gaji' => 222, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 103, 'id_komponen_gaji' => 224, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 103, 'id_komponen_gaji' => 225, 'created_at' => now(), 'updated_at' => now()],
+
+            // Anggota 104 - Wakil Ketua DPR (Dasco)
+            ['id_anggota' => 104, 'id_komponen_gaji' => 202, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 104, 'id_komponen_gaji' => 204, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 104, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 104, 'id_komponen_gaji' => 206, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 104, 'id_komponen_gaji' => 208, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 104, 'id_komponen_gaji' => 210, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 104, 'id_komponen_gaji' => 214, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 104, 'id_komponen_gaji' => 217, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 104, 'id_komponen_gaji' => 220, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 104, 'id_komponen_gaji' => 222, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 104, 'id_komponen_gaji' => 224, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 104, 'id_komponen_gaji' => 225, 'created_at' => now(), 'updated_at' => now()],
+
+            // Anggota 105 - Anggota DPR (Muhaimin)
+            ['id_anggota' => 105, 'id_komponen_gaji' => 203, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 105, 'id_komponen_gaji' => 204, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 105, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 105, 'id_komponen_gaji' => 206, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 105, 'id_komponen_gaji' => 209, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 105, 'id_komponen_gaji' => 210, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 105, 'id_komponen_gaji' => 215, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 105, 'id_komponen_gaji' => 218, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 105, 'id_komponen_gaji' => 221, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 105, 'id_komponen_gaji' => 222, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 105, 'id_komponen_gaji' => 224, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 105, 'id_komponen_gaji' => 225, 'created_at' => now(), 'updated_at' => now()],
+
+            // Anggota 106 - Anggota DPR (Herman)
+            ['id_anggota' => 106, 'id_komponen_gaji' => 203, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 106, 'id_komponen_gaji' => 204, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 106, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 106, 'id_komponen_gaji' => 206, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 106, 'id_komponen_gaji' => 209, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 106, 'id_komponen_gaji' => 210, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 106, 'id_komponen_gaji' => 215, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 106, 'id_komponen_gaji' => 218, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 106, 'id_komponen_gaji' => 221, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 106, 'id_komponen_gaji' => 222, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 106, 'id_komponen_gaji' => 224, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 106, 'id_komponen_gaji' => 225, 'created_at' => now(), 'updated_at' => now()],
+        ]);
     }
 }
-
-
-
-// (102, 'Lodewijk', 'Paulus', NULL, NULL, 'Wakil Ketua', 'Kawin'),
-//   (103, 'Fadli', 'Zon', 'Dr.', 'S.S., M.Sc.', 'Anggota', 'Kawin'),
-//   (104, 'Sufmi', 'Dasco', 'Prof. Dr. Ir. H.', 'S.H., M.H.', 'Wakil Ketua', 'Kawin'),
-//   (105, 'Muhaimin', 'Iskandar', 'Dr (HC). Drs.', NULL, 'Anggota', 'Kawin'),
-//   (106, 'Herman', 'Hery', NULL, NULL, 'Anggota', 'Belum Kawin');
