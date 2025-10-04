@@ -251,6 +251,39 @@ class AdminController extends Controller
 
     public function index_tambah_gaji()
     {
-        return view('pages.admin.komponen_gaji.tambah');
+        $anggota = Anggota::whereNotIn('id_anggota', function ($query) {
+            $query->select('id_anggota')->from('penggajians');
+        })->get();
+        $komponen = komponen_gaji::all();
+
+        $data = [
+            'anggota' => $anggota,
+            'komponen' => $komponen,
+        ];
+
+        return view('pages.admin.penggajian.tambah', $data);
+    }
+
+    public function action_tambah_gaji(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'anggota' => 'required',
+            'pilihGaji' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/admin/penggajian/tambah')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        foreach ($request->pilihGaji as $p) {
+            penggajian::create([
+                'id_anggota' => $request->anggota,
+                'id_komponen_gaji' => $p,
+            ]);
+        }
+
+        return redirect('/admin/penggajian');
     }
 }

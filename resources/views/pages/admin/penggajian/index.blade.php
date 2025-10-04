@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="font-bold text-3xl uppercase mt-2">Penggajian Anggota DPR</h1>
 
-    <a href="/admin/komponen/tambah"
+    <a href="/admin/penggajian/tambah"
         class="w-20 h-10 flex border-2 border-purple-500 bg-purple-500 text-white hover:bg-purple-300 hover:border-purple-300 rounded-md justify-center items-center mt-8">Tambah</a>
     <table class="mt-5 w-full h-50">
         <tr class="bg-gray-500 text-white h-12">
@@ -22,10 +22,12 @@
                     <td>{{ $g['anggota']->jabatan }}</td>
                     <td>Rp. {{ number_format($g['total_gaji'], 2, ',', '.') }}</td>
                     <td class="h-full flex gap-2 justify-center items-center">
-                        {{-- <a href="/admin/komponen/edit/{{ $g->id_komponen_gaji }}"
+                        <a href="/admin/komponen/edit/{{ $g['anggota']->id_anggota }}"
+                            class="flex p-2 border-2 border-cyan-500 bg-cyan-500 text-white hover:bg-cyan-300 hover:border-cyan-300 rounded-md justify-center items-center">Detail</a>
+                        <a href="/admin/komponen/edit/{{ $g['anggota']->id_anggota }}"
                             class="flex p-2 border-2 border-green-500 bg-green-500 text-white hover:bg-green-300 hover:border-green-300 rounded-md justify-center items-center">Edit</a>
                         <a class="flex p-2 border-2 border-red-500 bg-red-500 text-white hover:bg-red-300 hover:border-red-300 rounded-md justify-center items-center hover:cursor-pointer btn-hapus"
-                            data-id="{{ $g->anggota_id_anggota }}">Delete</a> --}}
+                            data-id="{{ $g['anggota']->id_anggota }}">Delete</a>
                     </td>
                 </tr>
             @endforeach
