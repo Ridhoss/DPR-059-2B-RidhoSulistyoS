@@ -317,7 +317,7 @@ class AdminController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('/admin/penggajian/tambah')
+            return redirect('/admin/penggajian')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -346,5 +346,21 @@ class AdminController extends Controller
         }
 
         return redirect('/admin/penggajian');
+    }
+
+    public function action_delete_penggajian(Request $request)
+    {
+        $id = $request->input('id');
+
+        $komponen = penggajian::where('id_anggota', $id)->get();
+
+        if ($komponen) {
+            foreach ($komponen as $k) {
+                $k->delete();
+            }
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
     }
 }
