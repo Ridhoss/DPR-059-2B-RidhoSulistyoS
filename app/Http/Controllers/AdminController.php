@@ -29,6 +29,30 @@ class AdminController extends Controller
         return view('pages.admin.anggota.index', $data);
     }
 
+    public function action_cari_anggota(Request $request)
+    {
+        $keyword = $request->input('cari');
+        if (!empty($keyword)) {
+            $anggota = anggota::where(function ($q) use ($keyword) {
+                $q->where('id_anggota', 'like', "%{$keyword}%")
+                    ->orWhere('nama_depan', 'like', "%{$keyword}%")
+                    ->orWhere('nama_belakang', 'like', "%{$keyword}%")
+                    ->orWhere('gelar_depan', 'like', "%{$keyword}%")
+                    ->orWhere('gelar_belakang', 'like', "%{$keyword}%")
+                    ->orWhere('jabatan', 'like', "%{$keyword}%");
+            })->get();
+        } else {
+            $anggota = anggota::all();
+        }
+
+        $data = [
+            'anggota' => $anggota,
+            'keyword' => $keyword,
+        ];
+
+        return view('pages.admin.anggota.index', $data);
+    }
+
     public function index_tambah_anggota()
     {
         return view('pages.admin.anggota.tambah');
@@ -128,6 +152,29 @@ class AdminController extends Controller
     public function index_komponen()
     {
         $komponen = komponen_gaji::all();
+
+        $data = [
+            'komponen' => $komponen,
+        ];
+
+        return view('pages.admin.komponen_gaji.index', $data);
+    }
+
+    public function action_cari_komponen(Request $request)
+    {
+        $keyword = $request->input('cari');
+        if (!empty($keyword)) {
+            $komponen = komponen_gaji::where(function ($q) use ($keyword) {
+                $q->where('id_komponen_gaji', 'like', "%{$keyword}%")
+                    ->orWhere('nama_komponen', 'like', "%{$keyword}%")
+                    ->orWhere('kategori', 'like', "%{$keyword}%")
+                    ->orWhere('nominal', 'like', "%{$keyword}%")
+                    ->orWhere('satuan', 'like', "%{$keyword}%")
+                    ->orWhere('jabatan', 'like', "%{$keyword}%");
+            })->get();
+        } else {
+            $komponen = komponen_gaji::all();
+        }
 
         $data = [
             'komponen' => $komponen,
@@ -241,6 +288,46 @@ class AdminController extends Controller
                     })
                 ];
             });
+
+        $data = [
+            'gaji' => $penggajian,
+        ];
+
+        return view('pages.admin.penggajian.index', $data);
+    }
+
+    public function action_cari_penggajian(Request $request)
+    {
+        $keyword = $request->input('cari');
+
+        $komponen = penggajian::with(['anggota', 'komponen_gaji'])->get();
+        $komponenGrouped = $komponen->groupBy('id_anggota');
+
+        $gaji = $komponenGrouped
+            ->map(function ($items) {
+                $first = $items->first();
+                return [
+                    'anggota' => $first->anggota,
+                    'total_gaji' => $items->sum(function ($item) {
+                        return $item->komponen_gaji->nominal;
+                    })
+                ];
+            });
+
+        if (!empty($keyword)) {
+            $penggajian = $gaji->filter(function ($item) use ($keyword) {
+                $anggota = $item['anggota'];
+                $searchable = ['id_anggota','nama_depan', 'nama_belakang', 'gelar_depan', 'gelar_belakang', 'jabatan'];
+                foreach ($searchable as $col) {
+                    if (stripos($anggota->$col, $keyword) !== false) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+        } else {
+            $penggajian = $gaji;
+        }
 
         $data = [
             'gaji' => $penggajian,

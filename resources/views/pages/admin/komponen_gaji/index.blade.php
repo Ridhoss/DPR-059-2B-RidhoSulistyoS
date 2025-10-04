@@ -3,8 +3,17 @@
 @section('content')
     <h1 class="font-bold text-3xl uppercase mt-2">Komponen Gaji</h1>
 
-    <a href="/admin/komponen/tambah"
-        class="w-20 h-10 flex border-2 border-purple-500 bg-purple-500 text-white hover:bg-purple-300 hover:border-purple-300 rounded-md justify-center items-center mt-8">Tambah</a>
+
+    <div class="flex items-center justify-between mt-8">
+        <a href="/admin/komponen/tambah"
+            class="w-20 h-10 flex border-2 border-purple-500 bg-purple-500 text-white hover:bg-purple-300 hover:border-purple-300 rounded-md justify-center items-center ">Tambah</a>
+        <form action="/admin/komponen/cari" method="GET" class="h-10 flex gap-2">
+            <input type="text" class="border border-gray-500 h-10 rounded-lg ps-2" id="cari" name="cari"
+                placeholder="Pencarian" value="{{ request('cari') }}">
+            <button type="submit"
+                class="w-20 h-10 flex border-2 border-purple-500 bg-purple-500 text-white hover:bg-purple-300 hover:border-purple-300 rounded-md justify-center items-center ">Cari</button>
+        </form>
+    </div>
     <table class="mt-5 w-full h-50">
         <tr class="bg-gray-500 text-white h-12">
             <th>Id Komponen</th>

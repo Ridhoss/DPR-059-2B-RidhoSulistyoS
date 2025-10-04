@@ -22,6 +22,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
         Route::get('/admin/anggota/edit/{slug}', 'index_edit_anggota');
         Route::post('/admin/anggota/edit', 'action_edit_anggota');
         Route::post('/admin/anggota/delete', 'action_delete_anggota');
+        Route::get('/admin/anggota/cari', 'action_cari_anggota');
 
         // komponen gaji
         Route::get('/admin/komponen', 'index_komponen');
@@ -30,6 +31,8 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
         Route::get('/admin/komponen/edit/{slug}', 'index_edit_komponen');
         Route::post('/admin/komponen/edit', 'action_edit_komponen');
         Route::post('/admin/komponen/delete', 'action_delete_komponen');
+        Route::get('/admin/komponen/cari', 'action_cari_komponen');
+
 
         // penggajian
         Route::get('/admin/penggajian', 'index_gaji');
@@ -39,6 +42,8 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
         Route::post('/admin/penggajian/edit', 'action_ubah_gaji');
         Route::post('/admin/penggajian/delete', 'action_delete_penggajian');
         Route::get('/admin/penggajian/detail/{slug}', 'index_detail_penggajian');
+        Route::get('/admin/penggajian/cari', 'action_cari_penggajian');
+
     });
 });
 
