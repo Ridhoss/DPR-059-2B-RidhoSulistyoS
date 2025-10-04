@@ -53,6 +53,7 @@
                             <span>Total Gaji Keseluruhan:</span>
                             <span id="totalGajiKeseluruhan">Rp. 0</span>
                         </div>
+                        <span class="text-sm text-red-500">*Total Sudah beserta Tunjangan Anak Max 2 (Jika Ada)</span>
                     </div>
                     <button type="submit"
                         class="w-full h-10 flex border-2 border-purple-500 bg-purple-500 text-white hover:bg-purple-300 hover:border-purple-300 rounded-md justify-center items-center mt-8">Simpan</button>
@@ -126,7 +127,24 @@
                     </tr>
                 `;
             } else {
+                const menikah = selectedAnggota.status_pernikahan === 'Menikah';
+                const anakCount = Math.min(selectedAnggota.jumlah_anak, 2);
+
                 komponenGajiTerpilih.forEach(k => {
+                    const isTunjanganSuamiIstri = k.nama_komponen === 'Tunjangan Istri/Suami';
+                    const isTunjanganAnak = k.nama_komponen === 'Tunjangan Anak';
+
+                    let extraMultiplier = 1;
+                    if (isTunjanganAnak) {
+                        extraMultiplier = anakCount > 0 ? anakCount : 1;
+                    }
+
+                    const checked =
+                        (isTunjanganSuamiIstri && menikah) ||
+                        (isTunjanganAnak && anakCount > 0) || (k.kategori === 'Gaji Pokok') ?
+                        'checked' :
+                        '';
+
                     const row = document.createElement('tr');
                     row.classList.add('text-center', 'h-15', 'border-b-1', 'border-gray-400');
                     row.innerHTML = /*html*/ `
@@ -137,7 +155,7 @@
                         <td>Rp. ${new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(k.nominal).replace('Rp', '').trim()}</td>
                         <td>${k.satuan}</td>
                         <td class="h-full flex gap-2 justify-center items-center">
-                            <input class="scale-125" type="checkbox" name="pilihGaji[]" value="${k.id_komponen_gaji}">
+                            <input class="scale-125" type="checkbox" name="pilihGaji[]" value="${k.id_komponen_gaji}" ${checked} data-multiplier="${extraMultiplier}">
                         </td>
                     `;
                     tabelKomponenGaji.appendChild(row);
@@ -151,35 +169,41 @@
 
             const checkboxes = document.querySelectorAll('input[name="pilihGaji[]"]');
 
+            hitungTotalAwal();
+
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
-                    totalGaji = 0;
-                    totalGajiPokok = 0;
-                    totalTunjanganMelekat = 0;
-                    totalTunjanganLain = 0;
-
-                    checkboxes.forEach(cb => {
-                        if (cb.checked) {
-                            const checkedGaji = komponenGajiTerpilih.find(k => k
-                                .id_komponen_gaji === cb.value);
-
-                            if (checkedGaji.kategori === 'Gaji Pokok') {
-                                totalGajiPokok += checkedGaji.nominal;
-                            } else if (checkedGaji.kategori === 'Tunjangan Melekat') {
-                                totalTunjanganMelekat += checkedGaji.nominal;
-                            } else if (checkedGaji.kategori === 'Tunjangan Lain') {
-                                totalTunjanganLain += checkedGaji.nominal;
-                            }
-
-                            totalGaji += checkedGaji.nominal;
-                        }
-
-                        ubahTextNominal();
-                    })
+                    hitungTotalAwal();
                 });
             });
 
             ubahTextNominal();
+
+            function hitungTotalAwal() {
+                totalGaji = 0;
+                totalGajiPokok = 0;
+                totalTunjanganMelekat = 0;
+                totalTunjanganLain = 0;
+
+                checkboxes.forEach(cb => {
+                    if (cb.checked) {
+                        const checkedGaji = komponenGajiTerpilih.find(k => k.id_komponen_gaji === cb.value);
+
+                        if (checkedGaji.kategori === 'Gaji Pokok') {
+                            totalGajiPokok += checkedGaji.nominal;
+                        } else if (checkedGaji.kategori === 'Tunjangan Melekat') {
+                            totalTunjanganMelekat += checkedGaji.nominal;
+                        } else if (checkedGaji.kategori === 'Tunjangan Lain') {
+                            totalTunjanganLain += checkedGaji.nominal;
+                        }
+
+                        const multiplier = parseInt(cb.getAttribute('data-multiplier') || 1);
+                        totalGaji += checkedGaji.nominal * multiplier;
+                    }
+                });
+
+                ubahTextNominal();
+            }
 
             function ubahTextNominal() {
                 textGajiPokok.textContent = `Rp. ${totalGajiPokok.toLocaleString('id-ID')}`;

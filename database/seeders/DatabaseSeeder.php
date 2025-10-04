@@ -359,6 +359,7 @@ class DatabaseSeeder extends Seeder
             ['id_anggota' => 101, 'id_komponen_gaji' => 201, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 101, 'id_komponen_gaji' => 204, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 101, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 101, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 101, 'id_komponen_gaji' => 206, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 101, 'id_komponen_gaji' => 207, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 101, 'id_komponen_gaji' => 210, 'created_at' => now(), 'updated_at' => now()],
@@ -372,6 +373,7 @@ class DatabaseSeeder extends Seeder
             // Anggota 102 - Wakil Ketua DPR (Lodewijk)
             ['id_anggota' => 102, 'id_komponen_gaji' => 202, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 102, 'id_komponen_gaji' => 204, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 102, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 102, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 102, 'id_komponen_gaji' => 206, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 102, 'id_komponen_gaji' => 208, 'created_at' => now(), 'updated_at' => now()],
@@ -387,6 +389,7 @@ class DatabaseSeeder extends Seeder
             ['id_anggota' => 103, 'id_komponen_gaji' => 203, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 103, 'id_komponen_gaji' => 204, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 103, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 103, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 103, 'id_komponen_gaji' => 206, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 103, 'id_komponen_gaji' => 209, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 103, 'id_komponen_gaji' => 210, 'created_at' => now(), 'updated_at' => now()],
@@ -400,6 +403,7 @@ class DatabaseSeeder extends Seeder
             // Anggota 104 - Wakil Ketua DPR (Dasco)
             ['id_anggota' => 104, 'id_komponen_gaji' => 202, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 104, 'id_komponen_gaji' => 204, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 104, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 104, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 104, 'id_komponen_gaji' => 206, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 104, 'id_komponen_gaji' => 208, 'created_at' => now(), 'updated_at' => now()],
@@ -428,6 +432,7 @@ class DatabaseSeeder extends Seeder
             // Anggota 106 - Anggota DPR (Herman)
             ['id_anggota' => 106, 'id_komponen_gaji' => 203, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 106, 'id_komponen_gaji' => 204, 'created_at' => now(), 'updated_at' => now()],
+            ['id_anggota' => 106, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 106, 'id_komponen_gaji' => 205, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 106, 'id_komponen_gaji' => 206, 'created_at' => now(), 'updated_at' => now()],
             ['id_anggota' => 106, 'id_komponen_gaji' => 209, 'created_at' => now(), 'updated_at' => now()],

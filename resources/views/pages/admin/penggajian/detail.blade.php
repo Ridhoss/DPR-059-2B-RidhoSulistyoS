@@ -51,6 +51,7 @@
                         <span>Total Gaji Keseluruhan:</span>
                         <span id="totalGajiKeseluruhan">Rp. 0</span>
                     </div>
+                    <span class="text-sm text-red-500">*Total Sudah beserta Tunjangan Anak Max 2 (Jika Ada)</span>
                 </div>
             </div>
         </div>
@@ -79,6 +80,8 @@
             });
         @endforeach
 
+        const anakCount = Math.min({{ $anggota->jumlah_anak ?? 0 }}, 2);
+
         komponenGajiArray.forEach(k => {
             const row = document.createElement('tr');
             row.classList.add('text-center', 'h-15', 'border-b-1', 'border-gray-400');
@@ -92,6 +95,13 @@
                     `;
             tabelKomponenGaji.appendChild(row);
 
+            const isTunjanganAnak = k.nama_komponen === 'Tunjangan Anak';
+            let extraMultiplier = 1;
+
+            if (isTunjanganAnak) {
+                extraMultiplier = anakCount > 0 ? anakCount : 1;
+            }
+
             if (k.kategori === 'Gaji Pokok') {
                 totalGajiPokok += k.nominal;
             } else if (k.kategori === 'Tunjangan Melekat') {
@@ -100,7 +110,7 @@
                 totalTunjanganLain += k.nominal;
             }
 
-            totalGaji += k.nominal;
+            totalGaji += k.nominal * extraMultiplier;
 
             ubahTextNominal();
         });

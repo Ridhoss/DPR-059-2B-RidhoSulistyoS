@@ -317,7 +317,7 @@ class AdminController extends Controller
         if (!empty($keyword)) {
             $penggajian = $gaji->filter(function ($item) use ($keyword) {
                 $anggota = $item['anggota'];
-                $searchable = ['id_anggota','nama_depan', 'nama_belakang', 'gelar_depan', 'gelar_belakang', 'jabatan'];
+                $searchable = ['id_anggota', 'nama_depan', 'nama_belakang', 'gelar_depan', 'gelar_belakang', 'jabatan'];
                 foreach ($searchable as $col) {
                     if (stripos($anggota->$col, $keyword) !== false) {
                         return true;
@@ -364,11 +364,27 @@ class AdminController extends Controller
                 ->withInput();
         }
 
+        $anggota = Anggota::find($request->anggota);
+        $anakCount = min($anggota->jumlah_anak, 2);
         foreach ($request->pilihGaji as $p) {
-            penggajian::create([
-                'id_anggota' => $request->anggota,
-                'id_komponen_gaji' => $p,
-            ]);
+            $komponen = komponen_gaji::find($p);
+
+            if ($komponen->nama_komponen === 'Tunjangan Anak') {
+
+                $loop = $anakCount > 0 ? $anakCount : 1;
+
+                for ($i = 0; $i < $loop; $i++) {
+                    penggajian::create([
+                        'id_anggota' => $request->anggota,
+                        'id_komponen_gaji' => $p,
+                    ]);
+                }
+            } else {
+                penggajian::create([
+                    'id_anggota' => $request->anggota,
+                    'id_komponen_gaji' => $p,
+                ]);
+            }
         }
 
         return redirect('/admin/penggajian');
@@ -411,6 +427,7 @@ class AdminController extends Controller
 
         $anggotaId = $request->anggota;
         $komponenDipilih = $request->pilihGaji;
+        $jumlahAnak = max(1, intval($request->jumlah_anak));
 
         $komponenLama = Penggajian::where('id_anggota', $anggotaId)
             ->pluck('id_komponen_gaji')
@@ -426,10 +443,20 @@ class AdminController extends Controller
         }
 
         foreach ($komponenTambah as $idKomponen) {
-            Penggajian::create([
-                'id_anggota' => $anggotaId,
-                'id_komponen_gaji' => $idKomponen,
-            ]);
+            $idTunjangan = komponen_gaji::find($idKomponen);
+            if ($idTunjangan->nama_komponen === 'Tunjangan Anak') {
+                for ($i = 0; $i < $jumlahAnak; $i++) {
+                    Penggajian::create([
+                        'id_anggota' => $anggotaId,
+                        'id_komponen_gaji' => $idKomponen,
+                    ]);
+                }
+            } else {
+                Penggajian::create([
+                    'id_anggota' => $anggotaId,
+                    'id_komponen_gaji' => $idKomponen,
+                ]);
+            }
         }
 
         return redirect('/admin/penggajian');
