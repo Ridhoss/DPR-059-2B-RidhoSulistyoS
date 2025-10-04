@@ -60,6 +60,57 @@ class AdminController extends Controller
         return redirect('/admin/anggota');
     }
 
+    public function index_edit_anggota($id)
+    {
+        $anggota = anggota::where('id_anggota', $id)->first();
+
+        $data = [
+            'anggota' => $anggota,
+        ];
+
+        return view('pages.admin.anggota.edit', $data);
+    }
+
+    public function action_edit_anggota(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama_depan' => 'required',
+            'nama_belakang' => 'required',
+            'jabatan' => 'required',
+            'status_pernikahan' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/admin/anggota/edit/' . $request->id_anggota)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $anggota = anggota::where('id_anggota', $request->id_anggota)->first();
+
+        $anggota->update([
+            'nama_depan' => $request->nama_depan,
+            'nama_belakang' => $request->nama_belakang,
+            'gelar_depan' => $request->gelar_depan,
+            'gelar_belakang' => $request->gelar_belakang,
+            'jabatan' => $request->jabatan,
+            'status_pernikahan' => $request->status_pernikahan,
+        ]);
+
+        return redirect('/admin/anggota');
+    }
+
+    public function action_delete_anggota(Request $request)
+    {
+        $anggota = anggota::where('id_anggota', $request->id_anggota)->first();
+        $anggota->delete();
+
+        return redirect('/admin/anggota');
+    }
+
+
+
+
 
     // komponen gaji
     public function index_komponen()

@@ -18,6 +18,9 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
         Route::get('/admin/anggota', 'index_anggota');
         Route::get('/admin/anggota/tambah', 'index_tambah_anggota');
         Route::post('/admin/anggota/tambah', 'action_tambah_anggota');
+        Route::get('/admin/anggota/edit/{slug}', 'index_edit_anggota');
+        Route::post('/admin/anggota/edit', 'action_edit_anggota');
+        Route::post('/admin/anggota/delete', 'action_delete_anggota');
 
         Route::get('/admin/komponen', 'index_komponen');
         Route::get('/admin/komponen/tambah', 'index_tambah_komponen');
