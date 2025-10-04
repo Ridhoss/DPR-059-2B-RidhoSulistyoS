@@ -39,8 +39,6 @@
         </div>
     </div>
 
-    @yield('script')
-
     <script>
         btnLogout = document.getElementById('btn-logout');
 
@@ -63,18 +61,24 @@
                 confirmButtonText: "Sign Out",
                 showCancelButton: true,
             }).then((result) => {
-                fetch("/logout", {
-                    method: "POST",
-                    headers: {
-                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
-                        "Content-Type": "application/json",
-                    },
-                }).then(() => {
-                    window.location.href = "/";
-                });
+                if (result.isConfirmed) {
+                    fetch("/logout", {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+                                .content,
+                            "Content-Type": "application/json",
+                        },
+                    }).then(() => {
+                        window.location.href = "/";
+                    });
+                }
             });
         });
     </script>
+
+    @yield('script')
+
 </body>
 
 </html>

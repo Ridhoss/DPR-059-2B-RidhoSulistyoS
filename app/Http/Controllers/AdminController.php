@@ -102,10 +102,16 @@ class AdminController extends Controller
 
     public function action_delete_anggota(Request $request)
     {
-        $anggota = anggota::where('id_anggota', $request->id_anggota)->first();
-        $anggota->delete();
+        $id = $request->input('id');
 
-        return redirect('/admin/anggota');
+        $anggota = anggota::where('id_anggota', $id)->first();
+
+        if ($anggota) {
+            $anggota->delete();
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
     }
 
 
@@ -126,7 +132,7 @@ class AdminController extends Controller
 
     public function index_tambah_komponen()
     {
-        return view('pages.admin.anggota.tambah');
+        return view('pages.admin.komponen_gaji.tambah');
     }
 
     public function action_tambah_komponen(Request $request)

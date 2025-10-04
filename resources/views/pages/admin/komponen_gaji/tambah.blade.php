@@ -1,0 +1,54 @@
+@extends('layout.admin')
+
+@section('content')
+    <h1 class="font-bold text-3xl uppercase mt-10 text-center">Tambah Komponen Gaji</h1>
+    <div class="flex justify-center items-center mt-10">
+        <div class="p-5 border-2 border-gray-300 bg-white shadow-xl rounded-lg">
+            <form action="/admin/anggota/tambah" method="POST" class="w-150">
+                @csrf
+                <div class="flex flex-col mt-3">
+                    <label for="nama_komponen">Nama Komponen</label>
+                    <input type="text" class="border border-gray-500 h-10 rounded-lg ps-2 mt-2" id="nama_komponen"
+                        name="nama_komponen" value="{{ old('nama_komponen') }}" placeholder="Nama Komponen Gaji">
+                </div>
+                <div class="flex flex-col mt-3">
+                    <label for="gelar_belakang">Gelar Belakang</label>
+                    <input type="text" class="border border-gray-500 h-10 rounded-lg ps-2 mt-2" id="gelar_belakang"
+                        name="gelar_belakang" value="{{ old('gelar_belakang') }}" placeholder="Gelar Belakang">
+                </div>
+                <div class="flex flex-col mt-3">
+                    <label for="jabatan">Jabatan</label>
+                    <select name="jabatan" id="jabatan" class="border border-gray-500 h-10 rounded-lg ps-2 mt-2" required>
+                        @php
+                            $jabatans = ['Ketua', 'Wakil Ketua', 'Anggota'];
+                        @endphp
+                        @foreach ($jabatans as $j)
+                            <option value="{{ $j }}" {{ old('jabatan') == $j ? 'selected' : '' }}>
+                                {{ $j }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="flex flex-col mt-3">
+                    <label for="status_pernikahan">Status Pernikahan</label>
+                    <select name="status_pernikahan" id="status_pernikahan"
+                        class="border border-gray-500 h-10 rounded-lg ps-2 mt-2" required>
+                        @php
+                            $statuses = ['Menikah', 'Belum Menikah'];
+                        @endphp
+                        @foreach ($statuses as $s)
+                            <option value="{{ $s }}"
+                                {{ old('status_pernikahan') == $s ? 'selected' : '' }}>
+                                {{ $s }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="flex flex-col mt-3">
+                    <button type="submit"
+                        class="w-full h-10 mt-8 rounded-lg bg-purple-600 hover:bg-purple-400 text-white">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection
