@@ -8,7 +8,7 @@
             <div class="flex flex-col justify-center items-center w-[70%]">
                 <div class="p-5 border-2 border-gray-300 bg-white shadow-xl rounded-lg w-full">
                     <div class="flex flex-col mt-3">
-                        <label for="cmbAnggota">Nama Anggota</label>
+                        <label for="cmbAnggota">Anggota</label>
                         <select name="anggota" id="cmbAanggota" class="border border-gray-500 h-10 rounded-lg ps-2 mt-2"
                             required>
                             <option value="" selected disabled>-- Pilih Anggota --</option>
@@ -153,8 +153,6 @@
 
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
-                    const selectedId = this.value;
-
                     totalGaji = 0;
                     totalGajiPokok = 0;
                     totalTunjanganMelekat = 0;

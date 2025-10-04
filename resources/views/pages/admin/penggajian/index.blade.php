@@ -24,7 +24,7 @@
                     <td class="h-full flex gap-2 justify-center items-center">
                         <a href="/admin/komponen/edit/{{ $g['anggota']->id_anggota }}"
                             class="flex p-2 border-2 border-cyan-500 bg-cyan-500 text-white hover:bg-cyan-300 hover:border-cyan-300 rounded-md justify-center items-center">Detail</a>
-                        <a href="/admin/komponen/edit/{{ $g['anggota']->id_anggota }}"
+                        <a href="/admin/penggajian/edit/{{ $g['anggota']->id_anggota }}"
                             class="flex p-2 border-2 border-green-500 bg-green-500 text-white hover:bg-green-300 hover:border-green-300 rounded-md justify-center items-center">Edit</a>
                         <a class="flex p-2 border-2 border-red-500 bg-red-500 text-white hover:bg-red-300 hover:border-red-300 rounded-md justify-center items-center hover:cursor-pointer btn-hapus"
                             data-id="{{ $g['anggota']->id_anggota }}">Delete</a>

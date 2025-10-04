@@ -286,4 +286,65 @@ class AdminController extends Controller
 
         return redirect('/admin/penggajian');
     }
+
+    public function index_ubah_gaji($id)
+    {
+        $anggota = Anggota::where('id_anggota', $id)->first();
+        $id = $anggota->id_anggota;
+        $jabatan = $anggota->jabatan;
+        $komponenReady = komponen_gaji::whereIn('id_komponen_gaji', function ($query) use ($id) {
+            $query->select('id_komponen_gaji')
+                ->from('penggajians')
+                ->where('id_anggota', $id);
+        })->get();
+
+        $komponen = komponen_gaji::where('jabatan', $jabatan)->orWhere('jabatan', 'Semua')->get();
+
+        $data = [
+            'anggota' => $anggota,
+            'komponen' => $komponen,
+            'komponenReady' => $komponenReady,
+        ];
+
+        return view('pages.admin.penggajian.edit', $data);
+    }
+
+    public function action_ubah_gaji(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'anggota' => 'required',
+            'pilihGaji' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/admin/penggajian/tambah')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $anggotaId = $request->anggota;
+        $komponenDipilih = $request->pilihGaji;
+
+        $komponenLama = Penggajian::where('id_anggota', $anggotaId)
+            ->pluck('id_komponen_gaji')
+            ->toArray();
+
+        $komponenHapus = array_diff($komponenLama, $komponenDipilih);
+        $komponenTambah = array_diff($komponenDipilih, $komponenLama);
+
+        if (!empty($komponenHapus)) {
+            Penggajian::where('id_anggota', $anggotaId)
+                ->whereIn('id_komponen_gaji', $komponenHapus)
+                ->delete();
+        }
+
+        foreach ($komponenTambah as $idKomponen) {
+            Penggajian::create([
+                'id_anggota' => $anggotaId,
+                'id_komponen_gaji' => $idKomponen,
+            ]);
+        }
+
+        return redirect('/admin/penggajian');
+    }
 }
